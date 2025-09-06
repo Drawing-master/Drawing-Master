@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrawingMaster - Interactive Drawing Application</title>
+    <meta name="description" content="A modern, feature-rich drawing application with professional tools and intuitive design">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎨</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar with tools and controls -->
+        <div class="sidebar">
+            <div class="app-header">
+                <h1>🎨 DrawingMaster</h1>
+                <p class="app-subtitle">Professional Drawing Studio</p>
+            </div>
+            
+            <!-- Drawing Tools -->
+            <div class="tool-section">
+                <h3>Drawing Tools</h3>
+                <div class="tools-grid">
+                    <button class="tool-btn active" data-tool="pencil" title="Pencil (P)">
+                        <span class="tool-icon">✏️</span>
+                        <span class="tool-label">Pencil</span>
+                    </button>
+                    <button class="tool-btn" data-tool="brush" title="Brush (B)">
+                        <span class="tool-icon">🖌️</span>
+                        <span class="tool-label">Brush</span>
+                    </button>
+                    <button class="tool-btn" data-tool="eraser" title="Eraser (E)">
+                        <span class="tool-icon">🧹</span>
+                        <span class="tool-label">Eraser</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Shape Tools -->
+            <div class="tool-section">
+                <h3>Shape Tools</h3>
+                <div class="tools-grid">
+                    <button class="tool-btn" data-tool="line" title="Line (L)">
+                        <span class="tool-icon">📏</span>
+                        <span class="tool-label">Line</span>
+                    </button>
+                    <button class="tool-btn" data-tool="rectangle" title="Rectangle (R)">
+                        <span class="tool-icon">⬛</span>
+                        <span class="tool-label">Rectangle</span>
+                    </button>
+                    <button class="tool-btn" data-tool="circle" title="Circle (C)">
+                        <span class="tool-icon">⭕</span>
+                        <span class="tool-label">Circle</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Utility Tools -->
+            <div class="tool-section">
+                <h3>Utility Tools</h3>
+                <div class="tools-grid">
+                    <button class="tool-btn" data-tool="fill" title="Fill Bucket (F)">
+                        <span class="tool-icon">🪣</span>
+                        <span class="tool-label">Fill</span>
+                    </button>
+                    <button class="tool-btn" data-tool="text" title="Text (T)">
+                        <span class="tool-icon">📝</span>
+                        <span class="tool-label">Text</span>
+                    </button>
+                    <button class="tool-btn" data-tool="eyedropper" title="Color Picker (I)">
+                        <span class="tool-icon">💧</span>
+                        <span class="tool-label">Picker</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="tool-section">
+                <h3>Color Palette</h3>
+                <div class="color-input-container">
+                    <input type="color" id="customColor" class="custom-color-input" value="#000000">
+                    <label for="customColor" class="custom-color-label">Custom Color</label>
+                </div>
+                <div class="color-palette">
+                    <div class="color-btn active" style="background: #000000" data-color="#000000" title="Black"></div>
+                    <div class="color-btn" style="background: #ffffff" data-color="#ffffff" title="White"></div>
+                    <div class="color-btn" style="background: #ff0000" data-color="#ff0000" title="Red"></div>
+                    <div class="color-btn" style="background: #00ff00" data-color="#00ff00" title="Green"></div>
+                    <div class="color-btn" style="background: #0000ff" data-color="#0000ff" title="Blue"></div>
+                    <div class="color-btn" style="background: #ffff00" data-color="#ffff00" title="Yellow"></div>
+                    <div class="color-btn" style="background: #ff8800" data-color="#ff8800" title="Orange"></div>
+                    <div class="color-btn" style="background: #8800ff" data-color="#8800ff" title="Purple"></div>
+                    <div class="color-btn" style="background: #ff0080" data-color="#ff0080" title="Magenta"></div>
+                    <div class="color-btn" style="background: #00ffff" data-color="#00ffff" title="Cyan"></div>
+                    <div class="color-btn" style="background: #80ff00" data-color="#80ff00" title="Lime"></div>
+                    <div class="color-btn" style="background: #ff8080" data-color="#ff8080" title="Pink"></div>
+                    <div class="color-btn" style="background: #808080" data-color="#808080" title="Gray"></div>
+                    <div class="color-btn" style="background: #800000" data-color="#800000" title="Maroon"></div>
+                    <div class="color-btn" style="background: #008000" data-color="#008000" title="Dark Green"></div>
+                    <div class="color-btn" style="background: #000080" data-color="#000080" title="Navy"></div>
+                    <div class="color-btn" style="background: #800080" data-color="#800080" title="Dark Purple"></div>
+                    <div class="color-btn" style="background: #008080" data-color="#008080" title="Teal"></div>
+                </div>
+            </div>
+
+            <!-- Brush Controls -->
+            <div class="tool-section">
+                <h3>Brush Settings</h3>
+                <div class="control-group">
+                    <label for="brushSize">Size: <span id="brushSizeValue">5</span>px</label>
+                    <input type="range" id="brushSize" class="range-control" min="1" max="50" value="5">
+                </div>
+                <div class="control-group">
+                    <label for="brushOpacity">Opacity: <span id="opacityValue">100</span>%</label>
+                    <input type="range" id="brushOpacity" class="range-control" min="10" max="100" value="100">
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn" onclick="drawingApp.undo()" title="Ctrl+Z">
+                    <span>↶</span> Undo
+                </button>
+                <button class="action-btn" onclick="drawingApp.redo()" title="Ctrl+Y">
+                    <span>↷</span> Redo
+                </button>
+                <button class="action-btn clear-btn" onclick="drawingApp.clearCanvas()">
+                    <span>🗑️</span> Clear
+                </button>
+                <button class="action-btn gallery-btn" onclick="drawingApp.showProjectsModal()">
+                    <span>📁</span> Gallery
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Canvas Area -->
+        <div class="canvas-area">
+            <div class="canvas-header">
+                <div class="canvas-title-section">
+                    <h2 class="canvas-title">Untitled Project</h2>
+                    <div class="canvas-info">
+                        <span class="canvas-size">800 × 600px</span>
+                        <span class="separator">•</span>
+                        <span class="last-saved">Not saved</span>
+                    </div>
+                </div>
+                <div class="canvas-actions">
+                    <button class="header-btn save-btn" onclick="drawingApp.saveProject()">
+                        <span>💾</span> Save Project
+                    </button>
+                    <button class="header-btn export-btn" onclick="drawingApp.exportImage('png')">
+                        <span>📥</span> Export PNG
+                    </button>
+                    <button class="header-btn export-btn" onclick="drawingApp.exportImage('jpeg')">
+                        <span>📄</span> Export JPG
+                    </button>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="drawingCanvas" width="800" height="600"></canvas>
+                <div class="canvas-overlay" id="canvasOverlay">
+                    <div class="coordinates" id="coordinates">x: 0, y: 0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Gallery Modal -->
+    <div id="projectsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎨 Projects Gallery</h2>
+                <button class="close-btn" onclick="drawingApp.hideProjectsModal()" title="Close (Esc)">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="projectsGrid" class="projects-grid">
+                    <!-- Projects will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading DrawingMaster...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
